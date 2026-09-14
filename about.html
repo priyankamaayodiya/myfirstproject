@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic page · modern minimal</title>
+  <!-- clean, modern, responsive design – no external dependencies -->
+  <style>
+    /* reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      line-height: 1.6;
+      color: #0b1a2e;
+    }
+
+    /* main card – soft, elevated, with subtle glow */
+    .page {
+      max-width: 780px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 2.5rem;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 20, 40, 0.25),
+                  0 8px 24px -8px rgba(0, 0, 0, 0.08);
+      transition: box-shadow 0.2s ease;
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* header section */
+    .header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 2px solid #eef2f6;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .header h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #0b1a2e 0%, #1d3b5c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-right: 1rem;
+    }
+
+    .badge {
+      background: #eef6ff;
+      color: #1a4c7a;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      border: 1px solid #d6e4f0;
+      white-space: nowrap;
+      margin-top: 0.25rem;
+    }
+
+    /* main content */
+    .content {
+      margin: 1.8rem 0 2.2rem;
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      margin-bottom: 1.4rem;
+      color: #1e2f44;
+    }
+
+    .content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight {
+      background: #f0f6fe;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      font-weight: 500;
+      color: #0b2a4a;
+      border: 1px solid #dce8f5;
+    }
+
+    /* feature grid – minimal but structured */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.2rem;
+      margin: 2rem 0 1.2rem;
+    }
+
+    .feature-item {
+      background: #fafcff;
+      padding: 1.2rem 0.8rem;
+      border-radius: 1.8rem;
+      text-align: center;
+      border: 1px solid #eaf0f6;
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+    }
+
+    .feature-item:hover {
+      background: #ffffff;
+      border-color: #bdd3e8;
+      box-shadow: 0 8px 16px -12px rgba(18, 52, 86, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .feature-item span {
+      display: block;
+      font-size: 1.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-item strong {
+      display: block;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #0b1f33;
+    }
+
+    .feature-item small {
+      font-size: 0.8rem;
+      color: #3d5a78;
+    }
+
+    /* callout / extra info */
+    .callout {
+      background: #f2f8ff;
+      border-left: 6px solid #2d6b9e;
+      padding: 1.2rem 1.8rem;
+      border-radius: 1.6rem;
+      margin: 2rem 0 0.6rem;
+      font-size: 0.98rem;
+      color: #12304d;
+      box-shadow: inset 0 0 0 1px rgba(45, 107, 158, 0.08);
+    }
+
+    .callout code {
+      background: #dce8f5;
+      padding: 0.1rem 0.6rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #103450;
+    }
+
+    /* footer */
+    .footer {
+      margin-top: 2.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #e2eaf2;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #385a7a;
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: #1f4d78;
+      text-decoration: none;
+      border-bottom: 1px dotted #b6cedf;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .footer a:hover {
+      color: #0a2842;
+      border-bottom-color: #1f4d78;
+    }
+
+    .footer .meta {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    /* responsive fine-tune */
+    @media (max-width: 550px) {
+      .page {
+        padding: 1.8rem 1.5rem;
+        border-radius: 2rem;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 0.6rem;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* extra: simple print style */
+    @media print {
+      body {
+        background: white;
+        padding: 0.3in;
+      }
+      .page {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        padding: 1.5rem;
+      }
+      .badge {
+        background: #eee;
+        border-color: #aaa;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page" role="main">
+    <!-- header -->
+    <header class="header">
+      <h1>basic · page</h1>
+      <span class="badge">✦ minimal &amp; clean</span>
+    </header>
+
+    <!-- main content -->
+    <section class="content">
+      <p>
+        👋 Hello! This is a <span class="highlight">basic HTML page</span> with a 
+        modern, responsive design. It works perfectly on any device – from 
+        mobile to desktop.
+      </p>
+      <p>
+        Built with semantic HTML and lightweight CSS. No frameworks, no bloat. 
+        Just a solid starting point for your next project. dghhhfhjhjjugjtujtjutjutjutjutju
+      </p>
+
+      <!-- feature grid: simple info cards -->
+      <div class="feature-grid">
+        <div class="feature-item">
+          <span>📐</span>
+          <strong>Responsive</strong>
+          <small>fluid grid · flex</small>
+        </div>
+        <div class="feature-item">
+          <span>🎨</span>
+          <strong>Modern style</strong>
+          <small>soft shadows · clean</small>
+        </div>
+        <div class="feature-item">
+          <span>⚡</span>
+          <strong>Lightweight</strong>
+          <small>no deps · fast</small>
+        </div>
+      </div>
+
+      <!-- extra callout -->
+      <div class="callout">
+        💡 <strong>Tip:</strong> you can use this page as a template. 
+        Replace the content, add your own styles, or extend it with 
+        JavaScript. Everything is ready. 
+        <span style="display: inline-block; margin-top: 0.3rem;">
+          <code> &lt;!-- your code here --&gt; </code>
+        </span>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="meta">
+        <span>🕊️ basic page</span>
+        <span>·</span>
+        <span>HTML5 · CSS3</span>
+      </div>
+      <div>
+        <a href="#" onclick="event.preventDefault(); alert('✨ simple demo – feel free to customize!')">✨ about</a>
+        <span style="margin: 0 0.4rem;">·</span>
+        <a href="#" onclick="event.preventDefault(); window.scrollTo({top:0, behavior:'smooth'});">↑ top</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
